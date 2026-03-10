@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add New Candidate</h2>
+    <form method="POST" action="{{ url_for('add_candidate') }}">
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone">
+        </div>
+        <div class="form-group">
+            <label>Skills (Comma separated)</label>
+            <input type="text" name="skills" placeholder="Python, Django, SQL">
+        </div>
+        <div class="form-group">
+            <label>Experience (Years)</label>
+            <input type="number" name="experience" min="0">
+        </div>
+        <div class="form-group">
+            <label>Education</label>
+            <input type="text" name="education" placeholder="B.Tech, MBA, etc.">
+        </div>
+        <button type="submit" class="btn-primary">Save Candidate</button>
+    </form>
+</div>
+{% endblock %}

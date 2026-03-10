@@ -1,0 +1,14 @@
+Recruitment_Management_System/
+│
+├── instance/                 # SQLite database will be stored here (auto-created)
+├── static/
+│   └── style.css             # CSS Styling
+├── templates/
+│   ├── base.html             # Main layout
+│   ├── index.html            # Dashboard (List Candidates)
+│   ├── add_candidate.html    # Form to add new candidate
+│   └── update_status.html    # Form to update status
+├── app.py                    # Main Flask Application
+├── requirements.txt          # Python dependencies
+├── .gitignore                # Git ignore file
+└── README.md                 # Project documentation

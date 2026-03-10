@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Update Status for {{ candidate['name'] }}</h2>
+    <form method="POST" action="{{ url_for('update_status', id=candidate['id']) }}">
+        <div class="form-group">
+            <label>Current Status</label>
+            <select name="status" required>
+                <option value="Applied" {% if candidate['status'] == 'Applied' %}selected{% endif %}>Applied</option>
+                <option value="Shortlisted" {% if candidate['status'] == 'Shortlisted' %}selected{% endif %}>Shortlisted</option>
+                <option value="Interview Scheduled" {% if candidate['status'] == 'Interview Scheduled' %}selected{% endif %}>Interview Scheduled</option>
+                <option value="Selected" {% if candidate['status'] == 'Selected' %}selected{% endif %}>Selected</option>
+                <option value="Rejected" {% if candidate['status'] == 'Rejected' %}selected{% endif %}>Rejected</option>
+            </select>
+        </div>
+        <button type="submit" class="btn-primary">Update Status</button>
+    </form>
+</div>
+{% endblock %}

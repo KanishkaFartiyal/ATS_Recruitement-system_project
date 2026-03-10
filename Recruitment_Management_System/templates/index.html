@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header-section">
+    <h1>Candidate Dashboard</h1>
+    <form action="{{ url_for('search_candidates') }}" method="GET" class="search-form">
+        <input type="text" name="q" placeholder="Search by Name or Skill..." value="{{ search_query if search_query else '' }}">
+        <input type="number" name="min_exp" placeholder="Min Experience (Years)" style="width: 120px;">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<table class="candidate-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Skills</th>
+            <th>Exp (Yrs)</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for candidate in candidates %}
+        <tr>
+            <td>{{ candidate['id'] }}</td>
+            <td>{{ candidate['name'] }}</td>
+            <td>{{ candidate['email'] }}</td>
+            <td>{{ candidate['skills'] }}</td>
+            <td>{{ candidate['experience'] }}</td>
+            <td>
+                <span class="status-badge status-{{ candidate['status']|lower }}">
+                    {{ candidate['status'] }}
+                </span>
+            </td>
+            <td>
+                <a href="{{ url_for('update_status', id=candidate['id']) }}" class="btn-small">Update</a>
+                <a href="{{ url_for('delete_candidate', id=candidate['id']) }}" class="btn-small delete" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7" style="text-align:center;">No candidates found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
